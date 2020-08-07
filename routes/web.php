@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,23 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Route::get('/discuss', function () {
+//     return view('discuss');
+// });
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['middleware' => ['auth']], function () {
+    
+    Route::resource('channels', 'ChannelsController');
+
+    Route::get('discussions/create', 'DiscussionController@create')->name('discussion.create');
+
+    Route::post('discussions/store', 'DiscussionController@store')->name('discussion.store');
+
+    Route::get('discussions/{slug}', 'DiscussionController@show')->name('discussion');
+
+    
+});
