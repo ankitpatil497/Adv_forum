@@ -13,7 +13,7 @@
                     {{$discussion->created_at->diffForHumans()}}
                 </span> 
 
-            <a href="{{route('discussion',['slug'=>$discussion->slug])}}" class="btn btn-default float-right">View</a>
+            <a href="{{route('discussion',['slug'=>$discussion->slug])}}" class="btn btn-outline-dark float-right">View</a>
         </div>
 
         <div class="card-body">

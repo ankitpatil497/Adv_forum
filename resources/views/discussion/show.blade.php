@@ -50,8 +50,13 @@
                 {{$reply->content,80}}
             </p>
         </div>
+
         <div class="card-footer">
-            Like
+            @if ($reply->is_liked_by_auth_user())
+                <a href="{{route('reply.unlike',$reply->id)}}" class="btn btn-outline-danger btn-sm">Unlike<span class="badge">{{$reply->likes->count()}}</span></a>
+            @else
+                <a href="{{route('reply.like',$reply->id)}}" class="btn btn-outline-success btn-sm">Like<span class="badge">{{$reply->likes->count()}}</span></a>
+            @endif
         </div>
     </div>
 @endforeach
@@ -71,3 +76,4 @@
     </div>
 </div>
 @endsection
+
