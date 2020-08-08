@@ -24,7 +24,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/Forum', 'ForumController@show')->name('forum');
 
 Route::group(['middleware' => ['auth']], function () {
     
@@ -36,5 +36,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('discussions/{slug}', 'DiscussionController@show')->name('discussion');
 
+    Route::post('discussions/reply/{id}', 'DiscussionController@reply')->name('dicussion.reply');
     
 });
+ 

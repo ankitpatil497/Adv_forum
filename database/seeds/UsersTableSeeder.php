@@ -20,5 +20,10 @@ class UsersTableSeeder extends Seeder
             'admin'=>'1',
 
         ]);
+        User::create([
+            'name'=>'Ankit Patil',
+            'email'=>'ankitpatil0413@gmail.com',
+            'password'=>Hash::make('password'),
+        ]);
     }
 }
