@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Channel extends Model
 {
     protected $fillable=[
-        'name'
+        'name','slug'
     ];
+
+    public function discussion(){
+        return $this->hasMany(Discussion::class);
+    }
+
 }

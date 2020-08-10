@@ -10,7 +10,7 @@
             @csrf
 
             <div class="form-group">
-                <label for="channel">Channel</label>
+                <label for="channel">Peek a Channel</label>
                 <select name="channel_id" id="channel_id" class="form-control">
                     @foreach ($c as $item)
                         <option value="{{$item->id}}">{{$item->name}}</option>

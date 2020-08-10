@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="card mb-4">
+<div class="card border-dark mb-4">
      
     <div class="card-header">
         <img height="40px" width="40px" style="border-radius: 50%" src="{{Gravatar::src($discussion->user->email )}}" alt="">
@@ -10,11 +10,15 @@
                 {{$discussion->user->name}}  &nbsp;
                 {{$discussion->created_at->diffForHumans()}}
             </span> 
+            @if (!$discussion->is_watched_by_auth_user())
+                <a href="{{route('dicussion.watch',['id'=>$discussion->id])}}" class="btn btn-outline-dark float-right btn-sm">Watch</a>
+            @else
+                <a href="{{route('dicussion.unwatch',['id'=>$discussion->id])}}" class="btn btn-outline-dark float-right btn-sm">UnWatch</a>
+            @endif
 
-        <a href="{{route('discussion',['slug'=>$discussion->slug])}}" class="btn btn-default float-right">View</a>
     </div>
 
-    <div class="card-body">
+    <div class="card-body text-dark">
         <h4 class="text-center">
             <b>{{$discussion->title}}</b>
         </h4>
@@ -23,9 +27,12 @@
             {!!$discussion->content,80!!}
         </p>
     </div>
-
+    
     <div class="card-footer">
-        {{$discussion->replies->count()}} Replies
+        <span>
+            {{$discussion->replies->count()}} Replies
+        </span>
+        <a href="{{route('channel',['slug'=>$discussion->channel->slug])}}" class="btn btn-outline-secondary float-right btn-sm">{{$discussion->channel->name}}</a>
     </div>
 
     
@@ -44,7 +51,7 @@
 
         </div>
 
-        <div class="card-body">
+        <div class="card-body text-dark">
 
             <p class="text-center">
                 {{$reply->content,80}}
@@ -62,17 +69,23 @@
 @endforeach
 
 <div class="card">
-    <div class="card-body">
-       <form action="{{route('dicussion.reply',$discussion->id)}}" method="POST">
-           @csrf
+    <div class="card-body text-dark">
+       @if (Auth::check())
+        <form action="{{route('dicussion.reply',$discussion->id)}}" method="POST">
+                @csrf
 
-           <div class="form-group">
-               <label for="content">Leave a reply...</label>
-                <textarea name="content" id="content" cols="5" rows="5" class="form-control"></textarea>
+                <div class="form-group">
+                    <label for="content">Leave a reply...</label>
+                    <textarea name="content" id="content" cols="5" rows="5" class="form-control"></textarea>
+                </div>
+
+                <button class="btn btn-success float-right" type="submit">Reply</button>
+            </form>
+       @else
+           <div class="text-center">
+               <h2>Sign in to Leave the message</h2>
            </div>
-
-           <button class="btn btn-success float-right" type="submit">Reply</button>
-       </form>
+       @endif
     </div>
 </div>
 @endsection

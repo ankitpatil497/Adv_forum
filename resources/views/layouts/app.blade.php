@@ -84,6 +84,17 @@
                     <a href="{{route('discussion.create')}}" class="form-control btn btn-primary">Create a new Discussion</a>  
                     <br>
                     <br>
+                    <div class="card card-default ">
+        
+                        <div class="card card-body">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <a href="/Forum" style="text-decoration: none">Home</a>
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>                
                     <div class="card card-default">
                         <div class="card card-header">
                             Channels
@@ -93,7 +104,7 @@
                                 {{--  {{$channels}}  --}}
                                 @foreach ($c as $channel)
                                     <li class="list-group-item">
-                                        {{$channel->name}}
+                                        <a href="{{route('channel',$channel->slug)}}" style="text-decoration: none">{{$channel->name}}</a>
                                     </li>
                                 @endforeach
                             </ul>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Channel;
 use App\Http\Requests\CreateChannelRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
 
 class ChannelsController extends Controller
 {
@@ -37,7 +39,8 @@ class ChannelsController extends Controller
     public function store(CreateChannelRequest $request)
     {
         Channel::create([
-            'name'=>$request->name
+            'name'=>$request->name,
+            'slug'=>Str::slug($request->name)
         ]);
         
         session()->flash('success','Channel Created Successfully');
@@ -77,6 +80,7 @@ class ChannelsController extends Controller
     {
         // return $request;
         $channel->name=$request->name;
+        $channel->slug=$request->name;
         $channel->save();
         session()->flash('success','Channel edited Successfully');
         return redirect()->route('channels.index');
