@@ -5,11 +5,19 @@ namespace App\Http\Controllers;
 use App\Channel;
 use App\Http\Requests\CreateChannelRequest;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Str;
 
 
 class ChannelsController extends Controller
 {
+
+
+    public function __construct()
+    {
+        $this->middleware(['admin']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -82,7 +90,7 @@ class ChannelsController extends Controller
         $channel->name=$request->name;
         $channel->slug=$request->name;
         $channel->save();
-        session()->flash('success','Channel edited Successfully');
+        Session()->flash('success','Channel edited Successfully');
         return redirect()->route('channels.index');
     }
 
@@ -98,7 +106,7 @@ class ChannelsController extends Controller
 
         $channel->delete();
 
-        session()->flash('delete','Channel remove Successfully');
+        Session()->flash('delete','Channel remove Successfully');
 
         return redirect()->back();
     }

@@ -40,7 +40,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('discussions/store', 'DiscussionController@store')->name('discussion.store');
 
 
-    Route::post('discussions/reply/{id}', 'DiscussionController@reply')->name('dicussion.reply');
+    Route::post('discussions/reply/{id}', 'RepliesController@reply')->name('dicussion.reply');
+
+    Route::get('discussion/best/reply/{id}','DiscussionController@best_answer')->name('discussion.best_answer');
 
     Route::get('reply/like/{id}','LikesController@likes')->name('reply.like');
 
@@ -50,6 +52,12 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('discussion/unwatch/{id}','WatchersController@unwatch')->name('dicussion.unwatch');
     
-    
+    Route::get('discussion/edit/{slug}','DiscussionController@edit')->name('discussion.edit');
+
+    Route::post('discussiom/update/{id}','DiscussionController@update')->name('discussion.update');
+
+    Route::get('reply/edit/{id}','RepliesController@edit')->name('reply.edit');
+
+    Route::post('reply/update/{id}','RepliesController@update')->name('reply.update');
 });
  

@@ -9,8 +9,7 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -18,6 +17,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     @yield('css')
 </head>
 <body>
@@ -76,7 +77,20 @@
         {{--  <main class="py-4">
             @yield('content')
         </main>  --}}
-
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul class="list-group">
+                    @foreach ($errors->all() as $error)
+                        <li class="list-group-item">
+                            {{$error}}
+                        </li>    
+                    @endforeach
+                </ul>
+            </div>            
+            <br>
+            <br>
+        @endif
+        
         <main class="container py-4">
             <div class="row">
                 <div class="col-4">   
@@ -92,8 +106,33 @@
                                     <a href="/Forum" style="text-decoration: none">Home</a>
 
                                 </li>
+                                
+                                <li class="list-group-item">
+                                    <a href="/Forum?filter=me" style="text-decoration: none">My Discussion</a>
+                                </li>
+
+                                <li class="list-group-item">
+                                    <a href="/Forum?filter=solved" style="text-decoration: none">Answered Discussion</a>
+                                </li>
+
+                                <li class="list-group-item">
+                                    <a href="/Forum?filter=unsolved" style="text-decoration: none">UnAnswered Discussion</a>
+                                </li>
                             </ul>
                         </div>
+
+                        @if(Auth::check())
+                            @if (Auth::user()->admin)
+                            <div class="card card-body">
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        <a href="{{route('channels.index')}}" style="text-decoration: none">All Channel</a>
+
+                                    </li>
+                                </ul>
+                            </div>
+                            @endif
+                        @endif
                     </div>                
                     <div class="card card-default">
                         <div class="card card-header">
@@ -118,5 +157,27 @@
         </main>
     </div>
     @yield('js')
+
+
+    <!-- Scripts -->
+    <script src="/js/app.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <script>
+    @if(Session::has('success'))
+
+     toastr.success('{{Session::get('success')}}')
+
+    @endif
+
+    @if (Session::has('info'))
+        toastr.warning('{{Session::get('info')}}')
+    @endif
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
 </body>
 </html>

@@ -3,7 +3,7 @@
 @section('content')
 <div class="card">
     <div class="card-header">Channels
-
+        <a class="btn btn-success" href="{{route('channels.create')}}" >Create Channel</a>
     </div>
 
     <div class="card-body">

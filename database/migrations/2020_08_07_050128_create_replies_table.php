@@ -17,6 +17,7 @@ class CreateRepliesTable extends Migration
             $table->id();
             $table->integer('user_id')->unsigned();
             $table->text('content');
+            $table->boolean('best_answer')->default(0);
             $table->integer('discussion_id')->unsigned();
             $table->timestamps();
         });

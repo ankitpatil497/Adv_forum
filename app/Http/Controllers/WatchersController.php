@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Watchers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\Session\Session;
 
 class WatchersController extends Controller
 {
@@ -14,7 +15,7 @@ class WatchersController extends Controller
             'user_id'=>Auth::id()
         ]);
 
-        session()->flash('suceess','You are watching this Discussion');
+        Session()->flash('success','You are watching this Discussion');
         return redirect()->back();
     }
     public function unwatch($id){
@@ -22,7 +23,7 @@ class WatchersController extends Controller
         $watch=Watchers::where('discussion_id',$id)->where('user_id',Auth::id());
         $watch->delete();
 
-        session()->flash('suceess','You are no longer watching this Discussion');
+        Session()->flash('info','You are no longer watching this Discussion');
         return redirect()->back();
     }
 }

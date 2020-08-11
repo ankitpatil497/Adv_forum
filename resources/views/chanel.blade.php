@@ -13,8 +13,12 @@
                     {{$discussion->user->name}}  &nbsp;
                     {{$discussion->created_at->diffForHumans()}}
                 </span> 
-
-            <a href="{{route('discussion',['slug'=>$discussion->slug])}}" class="btn btn-outline-dark float-right">View</a>
+                @if ($discussion->hasBestAns())
+                <span class="btn btn-success btn-sm float-right">closed</span>
+            @else
+                <span class="btn btn-danger btn-sm float-right">open</span>
+            @endif
+            <a href="{{route('discussion',['slug'=>$discussion->slug])}}" style="margin-right: 8px" class="btn btn-outline-dark float-right btn-sm">View</a>
         </div>
 
         <div class="card-body">
@@ -22,7 +26,7 @@
                 <b>{{$discussion->title}}</b>
             </h4>
             <p class="text-center">
-                {!!\Illuminate\Support\Str::limit($discussion->content,80)!!}
+                {{\Illuminate\Support\Str::limit($discussion->content,80)}}
             </p>
         </div>
         <div class="card-footer">

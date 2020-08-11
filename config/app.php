@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Forum Discussion'),
 
     /*
     |--------------------------------------------------------------------------
@@ -175,7 +175,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        GrahamCampbell\Markdown\MarkdownServiceProvider::class,
     ],
 
     /*
@@ -228,6 +228,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Gravatar' => Thomaswelton\LaravelGravatar\Facades\Gravatar::class,
+        'Markdown' => GrahamCampbell\Markdown\Facades\Markdown::class,
+
 
     ],
 

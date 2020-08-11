@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Likes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\Session\Session;
 
 class LikesController extends Controller
 {
@@ -15,7 +16,7 @@ class LikesController extends Controller
             'user_id'=>Auth::id(),
         ]);
 
-        session()->flash('success','Liked.......');
+         Session()->flash('success','Liked.......');
         return redirect()->back();
     }
 
@@ -23,7 +24,7 @@ class LikesController extends Controller
         $d=Likes::where('reply_id',$id)->where('user_id',Auth::id());
         $d->delete();
 
-        session()->flash('success','Unlike.....');
+         Session()->flash('info','Unlike.....');
 
         return redirect()->back();
     }

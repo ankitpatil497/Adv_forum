@@ -20,13 +20,13 @@
 
             <div class="form-group">
                 <label for="title">Title</label>
-                <input type="text" class="form-control" name="title" id="title">
+                <input type="text" value="{{old('title')}}" class="form-control" name="title" id="title">
             </div>
 
             <div class="form-group">
                 <label for="content">Content</label>
-                <input id="x" type="hidden" name="content">
-                <trix-editor input="x"></trix-editor>
+                <textarea class="form-control" name="content" id="conntent" cols="5" rows="5">{{old('content')}}</textarea>
+
             </div>
 
             <button type="submit" class="btn btn-success float-right">Create Discussion</button>
@@ -36,12 +36,4 @@
     </div>
 </div>
 </div>
-@endsection
-
-@section('css')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.3/trix.css" type="text/css">
-@endsection
-
-@section('js')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.3/trix.js"></script>
 @endsection
