@@ -9,8 +9,12 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-
-
+    <style>
+        a {
+            color:black;
+        }
+      </style>
+      
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -100,15 +104,15 @@
                     <br>
                     <div class="card card-default ">
         
-                        <div class="card card-body">
-                            <ul class="list-group">
+                        <div class="card card-body" >
+                            <ul class="list-group"><strong>
                                 <li class="list-group-item">
                                     <a href="/Forum" style="text-decoration: none">Home</a>
 
                                 </li>
                                 
-                                <li class="list-group-item">
-                                    <a href="/Forum?filter=me" style="text-decoration: none">My Discussion</a>
+                                <li class="list-group-item" >
+                                    <a href="/Forum?filter=me" style="text-decoration: none color:black">My Discussion</a>
                                 </li>
 
                                 <li class="list-group-item">
@@ -118,6 +122,7 @@
                                 <li class="list-group-item">
                                     <a href="/Forum?filter=unsolved" style="text-decoration: none">UnAnswered Discussion</a>
                                 </li>
+                            </strong>
                             </ul>
                         </div>
 
@@ -134,7 +139,7 @@
                             @endif
                         @endif
                     </div>                
-                    <div class="card card-default">
+                    <div class="card card-default mt-4">
                         <div class="card card-header">
                             Channels
                         </div>

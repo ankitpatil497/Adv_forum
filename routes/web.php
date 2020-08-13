@@ -22,13 +22,18 @@ Route::get('/', function () {
 //     return view('discuss');
 // });
 
-Auth::routes();
+Auth::routes(['verify'=>true]);
+Route::group(['middleware' => ['verified']], function () {
 
-Route::get('/Forum', 'ForumController@show')->name('forum');
 
-Route::get('channel/{slug}','ForumController@chanel')->name('channel');
+    Route::get('/Forum', 'ForumController@show')->name('forum');
 
-Route::get('discussions/{slug}', 'DiscussionController@show')->name('discussion');
+    Route::get('channel/{slug}','ForumController@chanel')->name('channel');
+
+    Route::get('discussions/{slug}', 'DiscussionController@show')->name('discussion');
+    
+});
+
 
 
 Route::group(['middleware' => ['auth']], function () {

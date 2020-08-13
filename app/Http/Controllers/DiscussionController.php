@@ -19,7 +19,7 @@ class DiscussionController extends Controller
     public function store (){
         $this->validate(request(),[
             'channel_id'=>'required',
-            'title'=>'required',
+            'title'=>'required|unique:discussions',
             'content'=>'required'
         ]);
         $r=request();
