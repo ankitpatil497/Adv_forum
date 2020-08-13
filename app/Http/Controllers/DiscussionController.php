@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Str;
 use App\Discussion;
-use App\Notifications\NewreplyAdded;
 use App\Reply;
-use App\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 

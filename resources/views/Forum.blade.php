@@ -6,7 +6,7 @@
     
    
         <div class="card-header">
-            <img height="40px" width="40px" style="border-radius: 50%" src="{{Gravatar::src($discussion->user->email )}}" alt="">
+            <img height="40px" width="40px" style="border-radius: 50%" src="{{Gravatar::get($discussion->user->email )}}" alt="">
 
                 <span class=" ml-2">
                     {{$discussion->user->name}}  &nbsp;

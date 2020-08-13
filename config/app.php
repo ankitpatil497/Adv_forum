@@ -166,7 +166,7 @@ return [
          * Package Service Providers...
          */
         Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider::class,
-
+        
         /*
          * Application Service Providers...
          */
